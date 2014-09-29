@@ -7,7 +7,7 @@
 
 struct config {
         FILE *fp;
-        char  section[1024];
+        char  section[CONFIG_MAXLINE];
 };
 
 int
