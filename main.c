@@ -7,12 +7,12 @@ main(int argc, char *argv[])
         char name[CONFIG_MAXLINE];
         char value[CONFIG_MAXLINE];
 
-        struct config config;
-        config_open(&config, argv[1]);
-        while (config_parse(&config, section, name, value)) {
+        struct configparser config;
+        configparser_open(&config, argv[1]);
+        while (configparser_parse(&config, section, name, value)) {
                 printf("section: ``%s'', name: ``%s'', value: ``%s''\n", section, name, value);
         }
-        config_close(&config);
+        configparser_close(&config);
         return 0;
 }
 

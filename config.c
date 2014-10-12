@@ -6,7 +6,7 @@
 #include <ctype.h>
 
 int
-config_open(struct config *config, char *filename)
+configparser_open(struct configparser *config, char *filename)
 {
 	config->fp = fopen(filename, "r");
 	memset(config->section, 0, sizeof(config->section));
@@ -14,14 +14,14 @@ config_open(struct config *config, char *filename)
 }
 
 int
-config_close(struct config *config)
+configparser_close(struct configparser *config)
 {
 	fclose(config->fp);
 	return 1;
 }
 
 int
-config_parse(struct config *config, char *section, char *name, char *value)
+configparser_parse(struct configparser *config, char *section, char *name, char *value)
 {
 	int  len;
 	char buf[CONFIG_MAXLINE];

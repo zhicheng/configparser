@@ -5,19 +5,19 @@
 
 #define CONFIG_MAXLINE 4096
 
-struct config {
+struct configparser {
         FILE *fp;
         char  section[CONFIG_MAXLINE];
 };
 
 int
-config_open(struct config *config, char *filename);
+configparser_open(struct configparser *config, char *filename);
 
 int
-config_close(struct config *config);
+configparser_close(struct configparser *config);
 
 int
-config_parse(struct config *config, char *section, char *name, char *value);
+configparser_parse(struct configparser *config, char *section, char *name, char *value);
 
 
 #endif /* __CONFIG_H__ */
