@@ -26,6 +26,8 @@ configparser_parse(struct configparser *config, char *section, char *name, char 
 	int  len;
 	char buf[CONFIG_MAXLINE];
 
+	memset(name,  0, CONFIG_MAXLINE);
+	memset(value, 0, CONFIG_MAXLINE);
 	memset(section, 0, sizeof(config->section));
 	while (fgets(buf, CONFIG_MAXLINE, config->fp) != NULL) {
 		if (strlen(buf) == 0)
@@ -44,8 +46,8 @@ configparser_parse(struct configparser *config, char *section, char *name, char 
 			continue;
 
 		/* name:value or name=value */
-		if (sscanf(buf, "%[^:=\t ]%*[:=\t ]%[^\n]s", name, value) != 2)
-			break;
+		if (sscanf(buf, "%[^:=\t ]%*[:=\t ]%[^;\n]s", name, value) != 2)
+			continue;
 
 		/* right trim value */
 		for (len = strlen(value); len > 0 && isspace(value[len-1]); len--)
