@@ -9,6 +9,8 @@ int
 configparser_open(struct configparser *config, char *filename)
 {
 	config->fp = fopen(filename, "r");
+	if (config->fp == NULL)
+		return 0;
 	memset(config->section, 0, sizeof(config->section));
 	return 1;
 }
